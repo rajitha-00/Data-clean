@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def missing_value(df):
     col_na = list(df.columns[df.isna().any()])
@@ -15,3 +16,12 @@ hotel_raw = pd.read_csv('hotel_bookings.csv', header=0)
 
 # Call the missing_value function to analyze missing values
 missing_value(hotel_raw)
+
+# Change data type of 'company' column to category and replace missing values
+hotel_raw['company'] = hotel_raw['company'].astype('category').replace({np.nan: "Not_using_company"})
+
+# Change data type of 'agent' column to category and replace missing values
+hotel_raw['agent'] = hotel_raw['agent'].astype('category').replace({np.nan: "Not_using_agent"})
+
+# Display the updated DataFrame with changed 'company' and 'agent' columns
+# print(hotel_raw.head())
