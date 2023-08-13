@@ -12,10 +12,10 @@ def missing_value(df):
 hotel_raw = pd.read_csv('hotel_bookings.csv', header=0)
 
 # Display the first few rows of the DataFrame
-print(hotel_raw.head())
+# print(hotel_raw.head())
 
 # Call the missing_value function to analyze missing values
-missing_value(hotel_raw)
+# missing_value(hotel_raw)
 
 # Replace missing values in 'children' column with 0
 hotel_raw.loc[hotel_raw['children'].isna(), 'children'] = 0
@@ -35,4 +35,4 @@ print("After dropping rows:", len(hotel_raw))
 print(hotel_raw.head())
 
 # Call the missing_value function to analyze missing values
-missing_value(hotel_raw)
+# missing_value(hotel_raw)
