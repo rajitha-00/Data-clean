@@ -17,14 +17,22 @@ print(hotel_raw.head())
 # Call the missing_value function to analyze missing values
 missing_value(hotel_raw)
 
-# Change data type of 'company' column to category and replace missing values
-hotel_raw['company'] = hotel_raw['company'].astype('category').replace({np.nan: "Not_using_company"})
-
-# Change data type of 'agent' column to category and replace missing values
-hotel_raw['agent'] = hotel_raw['agent'].astype('category').replace({np.nan: "Not_using_agent"})
-
 # Replace missing values in 'children' column with 0
 hotel_raw.loc[hotel_raw['children'].isna(), 'children'] = 0
 
-# Display the updated DataFrame with changed 'company', 'agent', and 'children' columns
+# Replace missing values in 'company' column with "Not_using_company"
+hotel_raw['company'].fillna("Not_using_company", inplace=True)
+
+# Replace missing values in 'agent' column with "Not_using_agent"
+hotel_raw['agent'].fillna("Not_using_agent", inplace=True)
+
+# Analyze 'country' column and drop rows with missing values
+print("Before dropping rows:", len(hotel_raw))
+hotel_raw = hotel_raw.drop(hotel_raw[hotel_raw['country'].isna()].index)
+print("After dropping rows:", len(hotel_raw))
+
+# Display the updated DataFrame
 print(hotel_raw.head())
+
+# Call the missing_value function to analyze missing values
+missing_value(hotel_raw)
